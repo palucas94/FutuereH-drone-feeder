@@ -26,24 +26,27 @@ public class DroneService {
   }
   
   @Transactional
-  public void create(DroneDto droneDto) {
+  public DroneDto create(DroneDto droneDto) {
     Drone drone = new Drone();
 
-    drone.setId(droneDto.getId());
     drone.setName(droneDto.getName());
     drone.setDroneStatus(droneDto.getDroneStatus());
 
     repository.persist(drone);
+
+    return droneDto;
   }
 
   @Transactional
-  public void update(UpdatedDroneDto droneDto, Long id) {
+  public UpdatedDroneDto update(UpdatedDroneDto droneDto, Long id) {
     Drone drone = repository.findById(id);
  
     drone.setName(droneDto.getName());
     drone.setDroneStatus(droneDto.getDroneStatus());
     
     repository.persist(drone);
+    
+    return droneDto;
   }
   
   @Transactional

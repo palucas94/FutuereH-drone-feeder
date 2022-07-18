@@ -1,7 +1,5 @@
 package com.futuereh.controller;
 
-import java.util.List;
-
 import javax.inject.Inject;
 import javax.transaction.Transactional;
 import javax.ws.rs.Consumes;
@@ -13,10 +11,10 @@ import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
+import javax.ws.rs.core.Response;
 
 import com.futuereh.dto.DroneDto;
 import com.futuereh.dto.UpdatedDroneDto;
-import com.futuereh.entity.Drone;
 import com.futuereh.service.DroneService;
 
 @Path("/drone")
@@ -28,32 +26,38 @@ public class DroneController {
   private DroneService service;
 
   @GET
-  public List<Drone> findAll() {
-    return service.getAll();
+  public Response findAll() {
+    return Response.ok().entity(service.getAll()).build();
   }
 
   @GET
   @Path("/{id}")
-  public Drone getDroneById(@PathParam("id") Long id) {
-    return service.getDroneById(id);
+  public Response getDroneById(@PathParam("id") Long id) {
+    return Response.ok().entity(service.getDroneById(id)).build();
   }
 
   @Transactional
   @POST
-  @Consumes(MediaType.APPLICATION_JSON)
-  public void create(DroneDto drone) {
-    service.create(drone);
+  public Response create(DroneDto drone) {
+    return Response
+        .status(201)
+        .entity(service.create(drone))
+        .build();
   }
 
   @PATCH
   @Path("/{id}")
-  public void update(@PathParam("id") Long id, UpdatedDroneDto droneDto) {
-    service.update(droneDto, id);
+  public Response update(@PathParam("id") Long id, UpdatedDroneDto droneDto) {
+    return Response
+        .ok()
+        .entity(service.update(droneDto, id))
+        .build();
   }
 
   @DELETE
   @Path("/{id}")
-  public void delete(@PathParam("id") Long id) {
+  public Response delete(@PathParam("id") Long id) {
     service.delete(id);
+    return Response.ok().build();
   }
 }
