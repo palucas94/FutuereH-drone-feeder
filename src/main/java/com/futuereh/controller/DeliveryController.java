@@ -1,7 +1,5 @@
 package com.futuereh.controller;
 
-import java.util.List;
-
 import javax.inject.Inject;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
@@ -12,9 +10,9 @@ import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
+import javax.ws.rs.core.Response;
 
 import com.futuereh.dto.DeliveryDto;
-import com.futuereh.entity.Delivery;
 import com.futuereh.service.DeliveryService;
 
 @Path("/delivery")
@@ -26,30 +24,37 @@ public class DeliveryController {
   private DeliveryService service;
   
   @GET
-  public List<Delivery> getAll() {
-    return service.getAll();
+  public Response getAll() {
+    return Response.ok().entity(service.getAll()).build();
   }
   
   @GET
   @Path("/{id}")
-  public Delivery getDeliveryById(Long id) {
-    return service.getDeliveryById(id);
+  public Response getDeliveryById(Long id) {
+    return Response.ok().entity(service.getDeliveryById(id)).build();
   }
   
   @POST
-  public void create(DeliveryDto deliveryDto) {       
-    service.create(deliveryDto);
+  public Response create(DeliveryDto deliveryDto) {       
+    return Response
+        .status(201)
+        .entity(service.create(deliveryDto))
+        .build();
   }
   
   @PATCH
   @Path("/{id}")
-  public void update(@PathParam("id") Long id, DeliveryDto deliveryDto) {
-    service.update(deliveryDto, id);
+  public Response update(@PathParam("id") Long id, DeliveryDto deliveryDto) {
+    return Response
+        .ok()
+        .entity(service.update(deliveryDto, id))
+        .build();
   }
   
   @DELETE
   @Path("/{id}")
-  public void delete(@PathParam("id") Long id) {
+  public Response delete(@PathParam("id") Long id) {
     service.delete(id);
+    return Response.ok().build();
   }
 }

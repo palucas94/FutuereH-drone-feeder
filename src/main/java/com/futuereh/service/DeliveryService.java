@@ -26,7 +26,7 @@ public class DeliveryService {
   }
   
   @Transactional
-  public void create(DeliveryDto deliveryDto) {
+  public DeliveryDto create(DeliveryDto deliveryDto) {
     Delivery delivery = new Delivery();
     
     delivery.setLat(deliveryDto.getLat());
@@ -36,10 +36,12 @@ public class DeliveryService {
     delivery.setDeliveryStatus(deliveryDto.getDeliveryStatus());
     
     repository.persist(delivery);
+    
+    return deliveryDto;
   }
   
   @Transactional
-  public void update(DeliveryDto deliveryDto, Long id) {
+  public DeliveryDto update(DeliveryDto deliveryDto, Long id) {
     Delivery delivery = repository.findById(id);
     
     delivery.setLat(deliveryDto.getLat());
@@ -49,6 +51,8 @@ public class DeliveryService {
     delivery.setDeliveryStatus(deliveryDto.getDeliveryStatus());
     
     repository.persist(delivery);
+    
+    return deliveryDto;
   }
   
   @Transactional
