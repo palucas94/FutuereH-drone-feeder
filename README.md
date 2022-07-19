@@ -1,62 +1,66 @@
-# drone-feeder Project
+# Aceleração em Java - Desafio Final
 
-This project uses Quarkus, the Supersonic Subatomic Java Framework.
+Esta é uma solução para o problema proposto pela [Trybe](https://www.betrybe.com/) em parceria com a [Wipro](https://www.wipro.com/), para a validação dos conhecimentos em Java adquiridos durante a Aceleração. 
 
-If you want to learn more about Quarkus, please visit its website: https://quarkus.io/ .
+## Conteúdo
 
-## Running the application in dev mode
+- [Visão Geral](#visão-geral)
+  - [O Desafio](#o-desafio)
+  - [Tecnologias](#tecnologias)
+- [Instruções de Uso](#instruções-de-uso)
+- [Roadmap](#roadmap)
+- [Autores](#autores)
 
-You can run your application in dev mode that enables live coding using:
-```shell script
-./mvnw compile quarkus:dev
-```
+## Visão Geral
 
-> **_NOTE:_**  Quarkus now ships with a Dev UI, which is available in dev mode only at http://localhost:8080/q/dev/.
+### O Desafio
 
-## Packaging and running the application
+A empresa FutuereH conseguiu uma nova patente que permitirá a entrega de pacotes com drones. Nossa equipe é responsável por montar o serviço Back-end, que vai fornecer informações aos drones. O Back-end foi batizado como Drone Feeder. A Stack escolhida para a criação dele foi a linguagem Java, o banco de dados MySQL, e tudo deve rodar em containers Docker.
 
-The application can be packaged using:
-```shell script
-./mvnw package
-```
-It produces the `quarkus-run.jar` file in the `target/quarkus-app/` directory.
-Be aware that it’s not an _über-jar_ as the dependencies are copied into the `target/quarkus-app/lib/` directory.
+São esperadas as seguintes funcionalidades:
+- Implementar um C.R.U.D. para os drones;
+- Implementar um C.R.U.D. para uma entrega associada a um drone;
+- Alterar o status da entrega;
 
-The application is now runnable using `java -jar target/quarkus-app/quarkus-run.jar`.
+### Tecnologias
+- [Java](https://www.java.com/)
+- [Maven](https://maven.apache.org/)
+- [Quarkus](https://quarkus.io/)
+- [MySQL](https://www.mysql.com/)
+- [Docker](https://www.docker.com/)
 
-If you want to build an _über-jar_, execute the following command:
-```shell script
-./mvnw package -Dquarkus.package.type=uber-jar
-```
+## Instruções de Uso
 
-The application, packaged as an _über-jar_, is now runnable using `java -jar target/*-runner.jar`.
+### 1 - Instalação
 
-## Creating a native executable
+- Clone este repositório:
+    - `git clone git@github.com:palucas94/FutuereH-drone-feeder.git`
 
-You can create a native executable using: 
-```shell script
-./mvnw package -Pnative
-```
+- Acesse a raíz da aplicação:
+    - `cd FutuereH-drone-feeder`
+    
+- Instale as dependências do projeto:
+    - `mvn install`
 
-Or, if you don't have GraalVM installed, you can run the native executable build in a container using: 
-```shell script
-./mvnw package -Pnative -Dquarkus.native.container-build=true
-```
+### 2 - Rodar a aplicação localmente
 
-You can then execute your native executable with: `./target/drone-feeder-1.0.0-SNAPSHOT-runner`
+- Inicie o container docker:
+    - `docker-compose up`
 
-If you want to learn more about building native executables, please consult https://quarkus.io/guides/maven-tooling.
+- Para rodar a aplicação sem o container Docker, e com o MySQL instalado, basta utilizar o comando:
+    - `mvn compile quarkus:dev`
 
-## Related Guides
+### 3 - Testes
+- Para rodar os testes:
+    - `mvn test`
 
-- RESTEasy Classic JSON-B ([guide](https://quarkus.io/guides/rest-json)): JSON-B serialization support for RESTEasy Classic
-- Hibernate ORM with Panache ([guide](https://quarkus.io/guides/hibernate-orm-panache)): Simplify your persistence code for Hibernate ORM via the active record or the repository pattern
-- RESTEasy Classic ([guide](https://quarkus.io/guides/resteasy)): REST endpoint framework implementing JAX-RS and more
+- Para checar a cobertura dos testes:
+    - `mvn verify`
 
-## Provided Code
+## Roadmap
+- Adicionar e implementar exceptions
+- Implementar endpoints referentes ao vídeo da entrega sendo realizada (inserir, listar, baixar)
 
-### RESTEasy JAX-RS
-
-Easily start your RESTful Web Services
-
-[Related guide section...](https://quarkus.io/guides/getting-started#the-jax-rs-resources)
+## Autores
+- [Álvaro Gularte](https://www.linkedin.com/in/alvarogularte/)
+- [Lucas Pontes Arruda](https://www.linkedin.com/in/lucas-pontes-arruda/)
