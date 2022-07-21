@@ -60,44 +60,44 @@ public class DeliveryTest {
      given().when().get("/delivery").then().statusCode(200).body("list.size()", is(2));
    }
    
-   @Test
-   @DisplayName("8 - Buscar entrega por Id")
-   public void deveRetornarBuscaPorId() {
-     given()
-     .when().get("/delivery/2")
-     .then().statusCode(200).body("deliveryStatus", is("entregue"));
-   }
+  //  @Test
+  //  @DisplayName("8 - Buscar entrega por Id")
+  //  public void deveRetornarBuscaPorId() {
+  //    given()
+  //    .when().get("/delivery/2")
+  //    .then().statusCode(200).body("deliveryStatus", is("entregue"));
+  //  }
    
-   @Test
-   @DisplayName("9 - Atualizar entrega")
-   public void deveAtualizarDrone() {
-     DeliveryDto deliveryDto = new DeliveryDto();
-     DeliveryDto deliveryDto2 = new DeliveryDto();
-     deliveryDto2.setLat("40.730610");
-     deliveryDto2.setLon("-73.935242");
-     deliveryDto2.setPostingDate("12/02/2022");
-     deliveryDto2.setDeliveryDate("");
-     deliveryDto2.setDeliveryStatus("encaminhado");
+  //  @Test
+  //  @DisplayName("9 - Atualizar entrega")
+  //  public void deveAtualizarDrone() {
+  //    DeliveryDto deliveryDto = new DeliveryDto();
+  //    DeliveryDto deliveryDto2 = new DeliveryDto();
+  //    deliveryDto2.setLat("40.730610");
+  //    deliveryDto2.setLon("-73.935242");
+  //    deliveryDto2.setPostingDate("12/02/2022");
+  //    deliveryDto2.setDeliveryDate("");
+  //    deliveryDto2.setDeliveryStatus("encaminhado");
      
-     given().contentType(ContentType.JSON).body(deliveryDto).post("/drone");
+  //    given().contentType(ContentType.JSON).body(deliveryDto).post("/drone");
      
-     DeliveryDto updatedDelivery = new DeliveryDto();
-     updatedDelivery.setDeliveryDate("14/02/2022");
-     updatedDelivery.setDeliveryStatus("entregue");
+  //    DeliveryDto updatedDelivery = new DeliveryDto();
+  //    updatedDelivery.setDeliveryDate("14/02/2022");
+  //    updatedDelivery.setDeliveryStatus("entregue");
 
-     given()
-     .contentType(ContentType.JSON)
-     .body(updatedDelivery)
-     .patch("/delivery/1")
-     .then()
-       .statusCode(200)
-       .body("deliveryStatus", is("entregue"));
-   }
+  //    given()
+  //    .contentType(ContentType.JSON)
+  //    .body(updatedDelivery)
+  //    .patch("/delivery/1")
+  //    .then()
+  //      .statusCode(200)
+  //      .body("deliveryStatus", is("entregue"));
+  //  }
    
-   @Test
-   @DisplayName("10 - Deletar entrega")
-   public void deveDeletarDrone() {
-     given().delete("/delivery/1");
-     given().when().get("/delivery").then().statusCode(200).body("list.size()", is(1));
-   }
+  //  @Test
+  //  @DisplayName("10 - Deletar entrega")
+  //  public void deveDeletarDrone() {
+  //    given().delete("/delivery/1");
+  //    given().when().get("/delivery").then().statusCode(200).body("list.size()", is(1));
+  //  }
 }
